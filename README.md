@@ -29,7 +29,7 @@ POSTGRES_DB=
 ### Save questions from API to database
 
 ```http
-POST server:port/api/trivia?questions_num=number
+POST http://server:port/api/trivia?questions_num=number
 ```
 
 Retrieves a `number` of random trivia questions from [jService API](https://jservice.io) and stores them in the PostgreSQL database.
