@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import FastAPI, APIRouter, status, Depends, HTTPException
 from datetime import datetime
 from . import crud
-from config import QUESTION_LIMIT
+from .config import QUESTION_LIMIT
 from .models import Question
 from .schemas import QuestionSchema
 from .db import get_session, init_models
@@ -24,7 +24,7 @@ async def save_trivia(questions_num: int, session: AsyncSession = Depends(get_se
     
     existing_question_ids = set(await crud.get_question_ids(session))
     questions = []
-
+    # can potentially run into an endless loop if our database has ALL questions from the API
     while len(questions) < questions_num:
         data = await crud.get_trivia_questions(questions_num - len(questions))
         for question_data in data:
