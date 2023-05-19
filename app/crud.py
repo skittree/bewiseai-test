@@ -21,4 +21,4 @@ async def add_questions(session: AsyncSession, questions: list[Question]) -> lis
         return questions
     except IntegrityError as ex:
         await session.rollback()
-        raise IntegrityError("The city is already stored")
+        raise IntegrityError("The question is already stored")
