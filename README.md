@@ -29,7 +29,9 @@ POSTGRES_DB={your_db_name}
 
 You may view the documentation and test the various API requests via Swagger UI by heading to http://server:port/docs once the API is running. 
 
-For example, to launch on a local machine that is running the API on default port `8000`, you can use the following link: http://localhost:8000/docs.
+For example, to launch on a local machine that is running the API on default port `8000`, you can use the following link: http://localhost:8000/docs:
+
+![fig2](https://github.com/skittree/bewiseai-test/assets/32728173/bea7d4e9-be11-4a61-91de-17aa9355626e)
 
 Similarly, using the default `.env` parameters, the DB connection link is `postgresql://localhost:5432/trivia`.
 
