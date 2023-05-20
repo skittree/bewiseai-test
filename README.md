@@ -34,4 +34,5 @@ For example, to launch on a local machine that is running the API on default por
 Similarly, using the default `.env` parameters, the DB connection link is `postgresql://localhost:5432/trivia`.
 
 Here is an example on how to connect to the database with DBeaver:
+
 ![fig1](https://github.com/skittree/bewiseai-test/assets/32728173/3f21c05e-5cda-4ae1-a8f5-d14c2f482556)
