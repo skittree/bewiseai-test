@@ -57,4 +57,4 @@ async def get_record(session: AsyncSession, uuid: UUID) -> Record:
     row = result.scalar()
     if row:
         return row
-    raise NoResultFound({"statement": "Record with specified UUID was not found.", "params": uuid})
+    raise NoResultFound({"statement": "Record with specified UUID was not found.", "params": str(uuid)})

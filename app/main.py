@@ -84,6 +84,11 @@ async def get_record(id: UUID, user_id: int, session: AsyncSession = Depends(get
             status_code=status.HTTP_404_NOT_FOUND,
             detail=ex.args,
         )
+    if user.id != record.user_id:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail={"statement": "The audiofile does not belong to the specified user", "params": [str(id), user_id]},
+        )
     headers = {'Content-Disposition': f'inline; filename="{id}.mp3"'}
     return Response(record.audio, headers=headers, media_type='audio/mpeg')
 
