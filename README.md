@@ -9,7 +9,7 @@ Make sure to have [Docker](https://www.docker.com) installed and running on your
 git clone https://github.com/skittree/bewiseai-test.git
 ```
 
-1. Create the `.env` file in the root directory from `.env.template` to store your configuration parameters for the API.
+2. Create the `.env` file in the root directory from `.env.template` to store your configuration parameters for the API.
 
 ```dotenv
 QUESTION_LIMIT=500
