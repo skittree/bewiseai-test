@@ -2,14 +2,14 @@
 
 ## Installation steps
 
-Make sure to have [Docker](https://www.docker.com) available and installed on your local machine before setup.
+Make sure to have [Docker](https://www.docker.com) installed and running on your local machine before setup.
 
 1. Clone the repository to a local machine
 ```bash
 git clone https://github.com/skittree/bewiseai-test.git
 ```
 
-2. Create the `.env` file in the root directory from `.env.template` to store your configuration parameters for the API.
+1. Create the `.env` file in the root directory from `.env.template` to store your configuration parameters for the API.
 
 ```dotenv
 QUESTION_LIMIT=500
@@ -26,10 +26,4 @@ POSTGRES_DB=
 
 ## Usage
 
-### Save questions from API to database
-
-```http
-POST http://server:port/api/trivia?questions_num=number
-```
-
-Retrieves a `number` of random trivia questions from [jService API](https://jservice.io) and stores them in the PostgreSQL database.
+You view the documentation and test the various API requests via Swagger UI by heading to `http://server:port/docs` once the API is running.
