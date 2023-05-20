@@ -2,28 +2,31 @@
 
 ## Installation steps
 
-Make sure to have [Docker](https://www.docker.com) installed and running on your local machine before setup.
+Make sure to have [Docker](https://www.docker.com) installed and running with Compose on your local machine before setup.
 
 1. Clone the repository to a local machine
 ```bash
 git clone https://github.com/skittree/bewiseai-test.git
 ```
 
-2. Create the `.env` file in the root directory from `.env.template` to store your configuration parameters for the API.
+2. (Recommended) Edit the `.env` file in the root directory to store your own configuration parameters for the API for safety reasons.
 
 ```dotenv
 QUESTION_LIMIT=500
-PORT=
+MAX_FILESIZE_MB=100
 
-POSTGRES_USER=
-POSTGRES_PASSWORD=
-POSTGRES_SERVER=
-POSTGRES_PORT=
-POSTGRES_DB=
+PORT={your_api_port}
+POSTGRES_USER={your_db_username}
+POSTGRES_PASSWORD={your_db_password}
+POSTGRES_SERVER={your_db_server}
+POSTGRES_PORT={your_db_port}
+POSTGRES_DB={your_db_name}
 ```
 
 3. Run the script `compose.sh` to build the necessary Docker containers, images and volumes. The database tables are initialized upon launch.
 
 ## Usage
 
-You view the documentation and test the various API requests via Swagger UI by heading to `http://server:port/docs` once the API is running.
+You view the documentation and test the various API requests via Swagger UI by heading to `http://server:port/docs` once the API is running. 
+
+For example, to launch on a local machine that is running the API on default port `8000`, you can use the following link: `http://localhost:8000/docs`.

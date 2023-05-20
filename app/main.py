@@ -2,10 +2,10 @@ from io import BytesIO
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import IntegrityError, NoResultFound
 from fastapi import FastAPI, APIRouter, Request, status, Depends, HTTPException, Form, File, UploadFile
-from fastapi.responses import Response, RedirectResponse
+from fastapi.responses import Response
 from datetime import datetime
 from . import crud
-from .config import QUESTION_LIMIT
+from .config import QUESTION_LIMIT, MAX_FILESIZE_MB
 from .models import *
 from .schemas import *
 from .db import get_session, init_models
@@ -97,6 +97,12 @@ async def create_record(request: Request, user_id: int = Form(...), user_token: 
     """
     Saves .wav `audio` in the database as .mp3 for the specified `user_id` with `user_token` UUID validation. Returns download link.
     """
+    # this needs to change to middleware, since we are still uploading the file
+    if audio.size > MAX_FILESIZE_MB * 10**6:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail={"statement": f"The file is too big, please make sure it is less than {MAX_FILESIZE_MB}MB", "params": f"{audio.size/10**6:.2f}MB"},
+        )
     try:
         user = await crud.get_user(session, user_id)
     except NoResultFound as ex:
@@ -124,7 +130,7 @@ async def create_record(request: Request, user_id: int = Form(...), user_token: 
             detail={"statement": "This audio file is incompatible, please upload .wav audio.", "params": ext},
         )
     
-    sound = AudioSegment.from_wav(BytesIO(await audio.read())).export(format="mp3").read()
+    sound = AudioSegment.from_wav(BytesIO(await audio.read())).export(format="mp3", bitrate="320k").read()
     record = await crud.create_record(session, Record(user_id=user_id, audio=sound))
     return request.url_for("get_record").include_query_params(id=record.id, user_id=user_id)
 
