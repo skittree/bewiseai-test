@@ -2,7 +2,7 @@
 
 ## Installation steps
 
-Make sure to have [Docker](https://www.docker.com) installed and running with Compose on your local machine before setup.
+Make sure to have [Docker](https://www.docker.com) installed and running with Compose on your local machine before setup. Use Linux containers.
 
 1. Clone the repository to a local machine
 ```bash
